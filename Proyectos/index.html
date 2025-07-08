@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎉 Feliz Cumpleaños, Mi Amor 🎂</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at top left, #ffe4e1, #ffb6c1, #ff69b4);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 0 40px 0;
+            background-image: url('https://img.icons8.com/emoji/96/birthday-cake.png');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: 80px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            color: #333;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .indicator.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        .music-player {
+            background: linear-gradient(135deg, #ffd1dc 0%, #fbc2eb 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-player h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .song-info {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .song-title {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .song-artist {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .play-btn {
+            background-color: white;
+            color: #f06292;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            height: 5px;
+            border-radius: 5px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: white;
+            width: 0%;
+            border-radius: 5px;
+        }
+
+        .time {
+            color: white;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            color: white;
+        }
+
+        .balloon {
+            position: fixed;
+            bottom: -150px;
+            width: 60px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            border-radius: 50% 50% 45% 45%;
+            animation: floatBalloon 10s linear infinite;
+            z-index: 10;
+            text-shadow: 0 0 3px #000;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 2px;
+            height: 40px;
+            background: #333;
+            transform: translateX(-50%);
+            animation: sway 2s ease-in-out infinite;
+        }
+
+        @keyframes floatBalloon {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sway {
+
+            0%,
+            100% {
+                transform: translateX(-50%) rotate(0deg);
+            }
+
+            50% {
+                transform: translateX(-50%) rotate(10deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content {
+            background: white;
+        }
+
+        .music-player {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .typewriter-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+            color: #444;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            min-height: 120px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .polaroid-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            width: 180px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .polaroid:nth-child(even) {
+            transform: rotate(2.5deg);
+        }
+
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 2px solid #eee;
+        }
+
+        .caption {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Lightbox full screen */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid white;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎉 ¡Feliz Cumpleaños, Mi Amor! 🎂</h1>
+            <p class="subtitle">Para mi novia hermosa 💖</p>
+        </header>
+
+        <div class="typewriter-container">
+            <p id="typewriter-text"></p>
+        </div>
+        <div class="content">
+            <div class="carousel-container">
+                <div class="carousel">
+                </div>
+                <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                <div class="carousel-indicators">
+                    <div class="indicator active"></div>
+                    <div class="indicator"></div>
+                    <div class="indicator"></div>
+                    <div class="indicator"></div>
+                    <div class="indicator"></div>
+                </div>
+            </div>
+            <h2 class="fotos">Algunos de nuestros momentos💖</h2>
+            <div class="polaroid-gallery">
+                <div class="polaroid" onclick="openLightbox('/Proyectos/media/2.jpg')">
+                    <img src=" /Proyectos/media/2.jpg" alt="Foto 1">
+                    <div class="caption">En la cafetería🥰</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('/Proyectos/media/3.jpg')">
+                    <img src="/Proyectos/media/3.jpg" alt="Foto 2">
+                    <div class="caption">Nuestras primeras fotos ✨</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('/Proyectos/media/5.jpg')">
+                    <img src="/Proyectos/media/5.jpg" alt="Foto 3">
+                    <div class="caption">La caminata 💕</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('/Proyectos/media/6.jpg')">
+                    <img src="/Proyectos/media/6.jpg" alt="Foto 4">
+                    <div class="caption">Donde la abuela ✨</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('/Proyectos/media/9.jpg')">
+                    <img src="/Proyectos/media/9.jpg" alt="Foto 5">
+                    <div class="caption">De charro 🥰</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('/Proyectos/media/10.jpg')">
+                    <img src="/Proyectos/media/10.jpg" alt="Foto 6">
+                    <div class="caption">Hermandad jajaj ✨</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('/Proyectos/media/11.jpg')">
+                    <img src="/Proyectos/media/11.jpg" alt="Foto 7">
+                    <div class="caption">Parrillando ❤️</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('/Proyectos/media/12.jpg')">
+                    <img src="/Proyectos/media/12.jpg" alt="Foto 8">
+                    <div class="caption">Hoy en Mac 🥰</div>
+                </div>
+            </div>
+
+            <!-- Lightbox -->
+            <div class="lightbox" onclick="closeLightbox()">
+                <img id="lightbox-img" src="" alt="Vista ampliada">
+            </div>
+        </div>
+
+        <div class="music-player">
+            <h2>🎵 Para mi amor 🎶</h2>
+            <div class="song-info">
+                <div class="song-title">Feliz Cumpleaños</div>
+                <div class="song-artist">Romeo Santos</div>
+            </div>
+            <button class="play-btn"><i class="fas fa-play"></i></button>
+            <div class="progress-container">
+                <div class="progress"></div>
+            </div>
+            <div class="time">
+                <span class="current-time">0:00</span>
+                <span class="duration">0:00</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>Con amor🎂 - Para la persona más increíble del universo 💕</p>
+        </footer>
+    </div>
+
+    <audio id="audio-player">
+        <source src="/Proyectos/media/Cumple.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <canvas id="confetti-canvas"
+        style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+    <script>
+        const canvas = document.getElementById('confetti-canvas');
+        const confettiInstance = confetti.create(canvas, { resize: true, useWorker: true });
+
+        function launchConfetti() {
+            const count = 20;
+            const defaults = {
+                origin: { y: 0 },
+                spread: 90,
+                ticks: 200,
+                gravity: 0.8,
+                scalar: 1.2,
+                zIndex: 9999,
+                colors: ['#ff5e5e', '#fbd14b', '#6be585', '#69c9ff', '#f473c3', '#c08cff']
+            };
+
+            confettiInstance(Object.assign({}, defaults, { particleCount: count, origin: { x: 0.25 } }));
+            confettiInstance(Object.assign({}, defaults, { particleCount: count, origin: { x: 0.5 } }));
+            confettiInstance(Object.assign({}, defaults, { particleCount: count, origin: { x: 0.75 } }));
+        }
+
+        setInterval(launchConfetti, 1000);
+
+        function createBalloon() {
+            const colors = ['#ff4d4d', '#ffd11a', '#66ff66', '#66ccff', '#ff99cc', '#cc99ff'];
+            const emojis = ['🎈', '🎁', '🎂', '🥳', '🎉', '✨'];
+
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            balloon.style.animationDuration = (7 + Math.random() * 4) + 's';
+
+            document.body.appendChild(balloon);
+            setTimeout(() => balloon.remove(), 12000);
+        }
+
+        setInterval(createBalloon, 1000);
+
+        // Carousel
+        const carousel = document.querySelector('.carousel');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        const indicators = document.querySelectorAll('.indicator');
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            indicators.forEach((ind, idx) => ind.classList.toggle('active', idx === currentIndex));
+        }
+
+        prevBtn.onclick = () => {
+            currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+            updateCarousel();
+        };
+        nextBtn.onclick = () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        };
+        indicators.forEach((indicator, i) => {
+            indicator.onclick = () => {
+                currentIndex = i;
+                updateCarousel();
+            };
+        });
+
+        // Music player
+        const playBtn = document.querySelector('.play-btn');
+        const progress = document.querySelector('.progress');
+        const audio = document.getElementById('audio-player');
+        const currentTimeEl = document.querySelector('.current-time');
+        const durationEl = document.querySelector('.duration');
+
+        playBtn.onclick = () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        };
+
+        audio.addEventListener('timeupdate', () => {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progress.style.width = percent + '%';
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+        });
+
+        audio.addEventListener('ended', () => {
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            progress.style.width = '0%';
+            currentTimeEl.textContent = '0:00';
+        });
+
+        function formatTime(seconds) {
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min}:${sec < 10 ? '0' + sec : sec}`;
+        }
+
+        const message = `
+Para mi princesa Beatriz 💖
+
+Hoy es un día muy muy muyyy especial para mi.
+
+Hace 19 años llegaste a este mundo a iluminar la vida de muchas personas, incluyendo la mía hace ya más de un año.
+
+Quería recordarte lo increíble que eres, cuánto significas para mí y lo afortunado que me siento de tenerte en mi vida.
+
+Cada momento contigo es un regalo, y espero que mi vida esté lleno de infinitos momentos bonitos a tu lado.
+
+Por el momento es el segundo cumpleaños que paso junto a ti (El primero como tu novio jaja), y estoy seguro que no va a ser el último.
+
+Que tengas un muy feliz cumpleaños mi amor, me siento muy bendecido de poder celebrar este día junto a ti.
+
+Con mucho amor, tu futuro esposo Fabián. ❤️
+`;
+
+        const typewriter = document.getElementById("typewriter-text");
+        let i = 0;
+
+        function type() {
+            if (i < message.length) {
+                typewriter.textContent += message.charAt(i);
+                i++;
+                setTimeout(type, 50); // Velocidad de escritura
+            }
+        }
+
+        // Esperar 2 segundos para iniciar el efecto (puedes ajustar)
+        setTimeout(type, 2000);
+
+
+        function openLightbox(src) {
+            const lightbox = document.querySelector('.lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.querySelector('.lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
